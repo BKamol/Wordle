@@ -1,11 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from wordle import Wordle
 
 
 class Ui_MainWindow(object):
     def __init__(self):
         super().__init__()
-        self.game = Wordle()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -63,12 +61,6 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
-        self.newGameButton.clicked.connect(self.new_game_button_clicked)
-        self.menuButton.clicked.connect(self.menu_button_clicked)
-        self.recordsButton.clicked.connect(self.records_button_clicked)
-        self.pushButton.clicked.connect(self.push_button_clicked)
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -76,28 +68,6 @@ class Ui_MainWindow(object):
         self.menuButton.setText(_translate("MainWindow", "Меню игры"))
         self.recordsButton.setText(_translate("MainWindow", "Меню Рекордов"))
         self.pushButton.setText(_translate("MainWindow", "Отправить"))
-
-    def new_game_button_clicked(self):
-        self.menuButton.setVisible(True)
-        self.recordsButton.setVisible(True)
-        self.textBrowser.setVisible(True)
-        self.show_line_edit()
-        log = self.game.new_game()
-        self.textBrowser.setText(log)
-
-    def menu_button_clicked(self):
-        self.show_line_edit()
-        self.textBrowser.setText(self.game.get_log())
-
-    def records_button_clicked(self):
-        self.hide_line_edit()
-        self.textBrowser.setText(self.game.get_records())
-
-    def push_button_clicked(self):
-        word = self.lineEdit.text()
-        self.lineEdit.clear()
-        log = self.game.make_attempt(word.lower())
-        self.textBrowser.setText(log)
 
     def hide_line_edit(self):
         self.pushButton.setVisible(False)
@@ -107,11 +77,3 @@ class Ui_MainWindow(object):
         self.pushButton.setVisible(True)
         self.lineEdit.setVisible(True)
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

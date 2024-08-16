@@ -46,14 +46,16 @@ class Wordle:
         else:
             self.log.append(f"Игрок: {word}")
             self._update_letters(word)
-            self.log.append(f"Игра: слово - {''.join(self._visible_word)}   |   Отгаданные буквы - {' '.join(self.found_letters)}")
+            found_words_in_round = [letter for letter in set(word) if letter in self.found_letters]
+            self.log.append(f"Игра: слово - {''.join(self._visible_word)}   |   Отгаданные буквы - {' '.join(found_words_in_round)}")
         return '\n'.join(self.log[-8:])
 
     def _update_letters(self, word):
         """Проверяет, нашел ли игрок буквы и добавляет их в атрибут found_letters"""
         for i, letter in enumerate(word):
-            if letter in self.secret_word and letter not in self.found_letters:
-                self.found_letters.append(letter)
+            if letter in self.secret_word:
+                if letter not in self.found_letters:
+                    self.found_letters.append(letter)
                 self._update_visible_word(letter, i)
 
     def _update_visible_word(self, letter, index):
