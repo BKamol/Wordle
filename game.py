@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWidgets
 from ui import Ui_MainWindow
 from wordle import Wordle
 
@@ -47,9 +47,8 @@ if __name__ == "__main__":
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     game = Wordle()
-    
+
     controller = WordleController(game, ui)
-    
 
     MainWindow.show()
     sys.exit(app.exec_())

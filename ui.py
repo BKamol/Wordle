@@ -72,8 +72,7 @@ class Ui_MainWindow(object):
     def hide_line_edit(self):
         self.pushButton.setVisible(False)
         self.lineEdit.setVisible(False)
-    
+
     def show_line_edit(self):
         self.pushButton.setVisible(True)
         self.lineEdit.setVisible(True)
-
