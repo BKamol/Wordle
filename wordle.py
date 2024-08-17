@@ -56,7 +56,7 @@ class Wordle:
             self._update_letters(word)
             found_in_round = [letter for letter in set(word)
                               if letter in self.found_letters]
-            self.log.append(f"Игра: слово - {''.join(self._visible_word)}   | \
+            self.log.append(f"Игра: слово - {''.join(self._visible_word)} \
                               Отгаданные буквы: {' '.join(found_in_round)}")
         return '\n'.join(self.log[-8:])
 
@@ -115,3 +115,6 @@ class Wordle:
 
     def get_log(self):
         return '\n'.join(self.log)
+
+    def clear_records(self):
+        self.records = {1: 0, 2: 0, 3: 0}
