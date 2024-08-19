@@ -58,6 +58,7 @@ class Wordle:
                               if letter in self.found_letters]
             self.log.append(f"Игра: слово - {''.join(self._visible_word)} \
                               Отгаданные буквы: {' '.join(found_in_round)}")
+            self._visible_word = ['_' for _ in range(4)]
         return '\n'.join(self.log[-8:])
 
     def _update_letters(self, word):
@@ -83,7 +84,7 @@ class Wordle:
         """Вызывается в случае победы"""
         self.score += 6 - len(self.attempts)
         self.won = True
-        self.log.append(f"Игра: Вы отгадали слово! Всего баллов в этом раунде:\
+        self.log.append(f"Игра: Вы отгадали слово! Баллов в этом раунде:\
                          {6 - len(self.attempts)}. \
                          Желаете продолжить? (y-да, n-нет)")
 
@@ -96,7 +97,7 @@ class Wordle:
         if not self.won:
             self.log.append(f"Игра: К сожалению, вы проиграли, \
                             слово было: {self.secret_word}")
-        self.log.append(f"Игра: Всего баллов заработано: {self.score}.")
+        self.log.append(f"Игра: Баллов заработано: {self.score}.")
 
     def update_records(self):
         """Обновляет таблицу рекодров"""

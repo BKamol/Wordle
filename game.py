@@ -23,16 +23,19 @@ class WordleController:
 
         log = self.game.new_game()
         self.ui.textBrowser.setText(log)
+        self.ui.clearButton.setVisible(False)
 
     def menu_button_clicked(self):
         self.ui.show_line_edit()
         self.ui.textBrowser.setText(self.game.get_log())
         self.ui.change_checked_button()
+        self.ui.clearButton.setVisible(False)
 
     def records_button_clicked(self):
         self.ui.hide_line_edit()
         self.ui.textBrowser.setText(self.game.get_records())
         self.ui.change_checked_button("records")
+        self.ui.clearButton.setVisible(True)
 
     def push_button_clicked(self):
         word = self.ui.lineEdit.text()
